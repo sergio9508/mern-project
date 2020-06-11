@@ -16,6 +16,7 @@ import { useState } from "react";
 import moment from "moment";
 import { postUser, cleanUser } from "redux/actions/user";
 import { useDispatch, useSelector } from "react-redux";
+import logo from "assets/image/logo.png"
 
 const { StringType, NumberType, DateType, BooleanType } = Schema.Types;
 
@@ -39,11 +40,10 @@ export default function FormUser() {
 
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
-
+  //funcion para reiniciar el estado de redux
   useEffect(() => {
     return () => {
       dispatch(cleanUser());
-      alert("salu");
     };
   }, [dispatch]);
 
@@ -57,7 +57,7 @@ export default function FormUser() {
   const [age, setAge] = useState(0);
 
   let form = useRef(null);
-
+  //modelo para validar el formulario aca estan las funciones para validar el dui y nit
   const model = Schema.Model({
     nombre_1: StringType().isRequired("Nombre es requerido"),
     nombre_2: StringType().isRequired("Nombre es requerido"),
@@ -65,7 +65,8 @@ export default function FormUser() {
     apellido_2: StringType().isRequired("Nombre es requerido"),
     apellido_casada: StringType(),
     genero: NumberType(),
-    DUI:
+    DUI: 
+    // funcion para validar el dui cuando el usuario es mayor años 
       age > 18
         ? StringType()
             .isRequired("Dui es requerido")
@@ -89,7 +90,8 @@ export default function FormUser() {
               }
             }, "Dui invalido")
         : StringType(),
-    NIT:
+    NIT: 
+    // funcion para validar el nit cuando el usuario es mayor años
       age >= 18
         ? StringType()
             .isRequired("NIT es requerido")
@@ -143,6 +145,7 @@ export default function FormUser() {
     nombre_completo: StringType(),
   });
 
+  // funcion al hacer submit del formulario
   function onSubmit() {
     if (!form.check()) {
       Alert.error("Algunos datos no son validos.", 5000);
@@ -161,6 +164,7 @@ export default function FormUser() {
       usuario.nombre_completo = `Joven ${saludo}`;
     }
     setFormValue(usuario);
+    //este dispatch hace el post hacia la api
     dispatch(postUser(usuario));
     if (user.success) {
       Alert.info(usuario.nombre_completo);
@@ -180,12 +184,13 @@ export default function FormUser() {
         mayor_edad: false,
         nombre_completo: "",
       };
+      //se reinician los valores del formulario
       setFormValue(usuario);
     }
   }
-
+  //funcion para validar si el usuario es mayor de edad se usa momentjs para hacer el calculo
   function calcAge(date) {
-    // console.log(age);
+    
     let edad = moment().diff(moment(date), "years");
     if (edad >= 18) {
       let usuario = formValue;
@@ -197,7 +202,10 @@ export default function FormUser() {
 
   return (
     <div className="container">
-      <h1>Registrar Usuario</h1>
+      <div className="title">
+        <img src={logo} />
+        <h1>Registrar Usuario</h1>
+      </div>
       <div className="form">
         <Form
           fluid

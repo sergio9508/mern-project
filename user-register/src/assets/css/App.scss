@@ -2,16 +2,26 @@ $black: rgb(14, 79, 153);
 $white: #fff;
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap");
 body {
-  background: $black;
-  color: $white;
+  background: $white;
+  color: $black;
   font-family: "Montserrat", sans-serif;
 }
 
 .container {
   max-width: 80%;
   margin: 0 auto;
-  h1 {
-    text-align: center;
+  .title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    h1 {
+      text-align: center;
+    }
+    img{
+      margin: 1em;
+      max-width: 100%;
+    }
   }
   .form {
     max-width: 50%;
@@ -22,13 +32,12 @@ body {
   span {
     color: rgb(71, 68, 68);
   }
-  .rs-calendar-table-cell-selected{
-    span{
+  .rs-calendar-table-cell-selected {
+    span {
       color: $white;
     }
-    
   }
-  .rs-calendar-month-dropdown-year{
+  .rs-calendar-month-dropdown-year {
     color: #000;
   }
 }

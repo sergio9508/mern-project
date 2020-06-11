@@ -1,5 +1,6 @@
 import { POST_USER, CLEAN_USER } from "redux/actions/types";
 
+//funcion que realiza el post a la api 
 export const postUser = (body) => (dispatch) => {
   console.log("redux", body);
   let heads = new Headers();
