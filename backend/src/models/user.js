@@ -1,9 +1,18 @@
 const { Schema, model } = require("mongoose");
 
-const Task = new Schema({
-  name: String,
-  last_name: String,
-  birthdate: Date,
+const User = new Schema({
+  name_1: String,
+  name_2: String,
+  apellido_1: String,
+  apellido_2: String, 
+  apellido_casada: String, 
+  genero: String, 
+  DUI: String,
+  NIT: String,
+  fecha_nacimiento: Date,
+  telefono: String,
+  direccion: String,
+  email: String,
 });
 
-module.exports = model("Task", Task);
+module.exports = model("User", User);

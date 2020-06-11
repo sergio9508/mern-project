@@ -1,0 +1,20 @@
+$black: rgb(14, 79, 153);
+$white: #fff;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap');
+body{
+  background: $black;
+  color: $white;
+  font-family: "Montserrat", sans-serif;
+}
+
+.container{
+  max-width: 80%;
+  margin: 0 auto;
+  h1{
+    text-align: center;
+  }
+  .form{
+    max-width: 50%;
+    margin: 1em auto;
+  }
+}
