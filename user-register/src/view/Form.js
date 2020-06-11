@@ -48,7 +48,7 @@ export default function FormUser() {
   }, [dispatch]);
 
   const [gender] = useState([
-    { value: 1, label: "Maculino" },
+    { value: 1, label: "Masculino" },
     { value: 2, label: "Femenino" },
   ]);
 
@@ -96,20 +96,20 @@ export default function FormUser() {
         ? StringType()
             .isRequired("NIT es requerido")
             .addRule((cadena) => {
-              var calculo = 0;
-              var digitos = parseInt(cadena.substring(12, 15));
-              var resultado;
+              let calculo = 0;
+              let digitos = parseInt(cadena.substring(12, 15));
+              let resultado;
               if (digitos <= 100) {
                 for (let posicion = 0; posicion <= 14; posicion++) {
                   {
                     if (!(posicion === 4 || posicion === 11)) {
-                      calculo += 14 * parseInt(cadena.charAt(posicion));
+                      calculo += (15-posicion) * parseInt(cadena.charAt(posicion));
                     }
                     calculo = calculo % 11;
                   }
                 }
               } else {
-                var n = 1;
+                let n = 1;
                 for (let posicion = 0; posicion <= 14; posicion++) {
                   {
                     if (!(posicion === 4 || posicion === 11)) {
@@ -157,11 +157,11 @@ export default function FormUser() {
     if (age < 35 && formValue.genero === 1) {
       usuario.nombre_completo = `Joven ${saludo}`;
     } else if (formValue.genero === 2 && formValue.apellido_casada === "") {
-      usuario.nombre_completo = `Joven ${saludo}`;
+      usuario.nombre_completo = `Srta ${saludo}`;
     } else if (age >= 35 && formValue.genero === 1) {
-      usuario.nombre_completo = `Joven ${saludo}`;
+      usuario.nombre_completo = `Sr. ${saludo}`;
     } else if (formValue.genero === 2 && formValue.apellido_casada.length > 0) {
-      usuario.nombre_completo = `Joven ${saludo}`;
+      usuario.nombre_completo = `Sra ${saludo}`;
     }
     setFormValue(usuario);
     //este dispatch hace el post hacia la api
@@ -216,19 +216,19 @@ export default function FormUser() {
           model={model}
         >
           <FormGroup>
-            <ControlLabel>Nombre 1</ControlLabel>
+            <ControlLabel>Primer Nombre</ControlLabel>
             <FormControl name="nombre_1" />
           </FormGroup>
           <FormGroup>
-            <ControlLabel>Nombre 2</ControlLabel>
+            <ControlLabel>Segundo Nombre</ControlLabel>
             <FormControl name="nombre_2" />
           </FormGroup>
           <FormGroup>
-            <ControlLabel>Apellido 1</ControlLabel>
+            <ControlLabel>Primer Apellido</ControlLabel>
             <FormControl name="apellido_1" />
           </FormGroup>
           <FormGroup>
-            <ControlLabel>Apellido 2</ControlLabel>
+            <ControlLabel>Segundo Apellido</ControlLabel>
             <FormControl name="apellido_2" />
           </FormGroup>
           <FormGroup>
