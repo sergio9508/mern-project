@@ -13,6 +13,8 @@ const User = new Schema({
   telefono: String,
   direccion: String,
   email: String,
+  mayor_edad: Boolean,
+  nombre_completo: String
 });
 
 module.exports = model("User", User);
