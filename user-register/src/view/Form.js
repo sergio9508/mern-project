@@ -195,6 +195,7 @@ export default function FormUser() {
     if (edad >= 18) {
       let usuario = formValue;
       usuario.mayor_edad = true;
+      usuario.fecha_nacimiento = date;
       setFormValue(usuario);
     }
     setAge(edad);
@@ -251,7 +252,6 @@ export default function FormUser() {
               name="fecha_nacimiento"
               accepter={DatePicker}
               block
-              oneTap
               onChange={(value) => calcAge(value)}
             />
           </FormGroup>
